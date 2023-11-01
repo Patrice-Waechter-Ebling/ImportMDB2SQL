@@ -1,0 +1,93 @@
+        static void Import()
+        {
+            using (var sqlConnection1 = new SqlConnection(PiloteSQL))
+            {
+                using (var cmd = new SqlCommand() { CommandText = "SELECT * FROM  ", CommandType = CommandType.Text, Connection = sqlConnection1 })
+                {
+                    sqlConnection1.Open();
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            //élimine la table de suivi des migrations
+                            if (reader[0].ToString().Substring(1, 2) != "__")
+                            {
+                                ListeTablesSQL listeTables = new(reader[0].ToString(), (int)reader[3], DateTime.Parse(reader[2].ToString()), (int)reader[1]);
+                                lstSQL.Add(listeTables);
+                            }
+                        }
+                    }
+                }
+            }
+            return lstSQL;
+        }
+
+GRB_Achat
+GRB_Achat_Pieces
+GRB_Achat_Pieces_Tampon
+GRB_Alarmes
+GRB_AutorisationPunch
+GRB_BavardSuppression
+GRB_BonsCommandes
+GRB_BonsCommandes_Pieces
+GRB_CatalogueElec
+GRB_CatalogueMec
+GRB_cédule
+GRB_Client
+GRB_Commentaires
+GRB_Config
+GRB_contact
+GRB_ContactClient
+GRB_ContactFRS
+GRB_Dessins
+GRB_Doublons
+GRB_Erreurs
+GRB_ExceptionsDL
+GRB_Famille
+GRB_Fournisseur
+GRB_Groupes
+GRB_impression_bonlivraison
+GRB_impression_ListePiece
+GRB_impression_soumission
+GRB_ImpressionDemandePrixElec
+GRB_ImpressionDemandePrixMec
+GRB_ImpressionDetailTemps
+GRB_ImpressionPoste
+GRB_ImpressionPunch
+GRB_ImpressionSommairePunchGeneral
+GRB_ImpressionSommairePunchGRB
+GRB_InventaireElec
+GRB_InventaireElecModif
+GRB_InventaireMec
+GRB_InventaireMecModif
+GRB_Outils
+GRB_Outils_In_out
+GRB_PiecesFRS
+GRB_Projet_Modif
+GRB_Projet_Pieces
+GRB_Projet_Pieces_Tampon
+GRB_ProjetElec
+GRB_ProjetMec
+GRB_ProjetsDessins
+GRB_ProjSoum
+GRB_Punch
+GRB_PunchExcel
+GRB_SortieMatériel
+GRB_Soumission_Modif
+GRB_Soumission_Pieces
+GRB_Soumission_Pieces_Tampon
+GRB_SoumissionElec
+GRB_SoumissionMec
+GRB_SoumProjSectionElec
+GRB_SoumProjSectionMec
+GRB_TempDP
+GRB_TempInventaire
+GRB_Transport
+GRB_vendeur
+Projet_piece_back
+projet_tampon_back
+Table des erreurs
+TBL_Categorie
+TBL_Punch_Type
+__EFMigrationsHistory
+GRB_employés
